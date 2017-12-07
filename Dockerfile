@@ -3,27 +3,27 @@ FROM ros:kinetic-perception
 # CPU Python 3.5 variant of Tensorflow
 ENV TENSORFLOW_VARIANT cpu/tensorflow-0.11.0rc0-cp27-none
 
-# The basics 
+# The basics
 RUN apt-get update && apt-get install -q -y \
         wget \
         pkg-config \
         git-core \
         python \
+        python-numpy \
+        python-pandas \
+        python-scipy \
         python-dev \
     && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*    
+    rm -rf /var/lib/apt/lists/*
 
 # Install Pip n Python modules
 RUN wget https://bootstrap.pypa.io/get-pip.py && \
     python get-pip.py && \
     rm get-pip.py \
-    && \ 
+    && \
     pip --no-cache-dir install \
-        scipy \
-        numpy \
         matplotlib \
-        pandas \
         ipykernel \
         jupyter \
         pyyaml \
